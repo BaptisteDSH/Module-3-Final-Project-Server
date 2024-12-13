@@ -86,14 +86,13 @@ const userSchema = new Schema(
     },
     phone: {
       type: Number,
-      required: [true, "Phone is required"],
     },
     // Updated pet field to support multiple pets
     pet: [
       {
         petType: {
           type: String,
-          required: true,
+
           enum: [
             "dog",
             "cat",
@@ -108,15 +107,14 @@ const userSchema = new Schema(
         },
         petName: {
           type: String,
-          required: true,
         },
         petDescription: {
           type: String,
-          required: true,
         },
         petPicture: {
           type: String,
-          default: "http://surl.li/edtwrl",
+          default:
+            "https://st3.depositphotos.com/2850099/15302/v/450/depositphotos_153029080-stock-illustration-vector-silhouette-of-dog.jpg",
         },
       },
     ],
