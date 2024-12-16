@@ -30,7 +30,7 @@ router.post("/", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   AdoptionModel.find({})
     .then((adoptions) => {
-      console.log("Retrieved adoptions -->", adoptions);
+      // console.log("Retrieved adoptions -->", adoptions);
       res.json(adoptions);
     })
     .catch((error) => {

@@ -88,7 +88,7 @@ router.post("/login", async (req, res, next) => {
 
 //Verify route
 router.get("/verify", isAuthenticated, (req, res) => {
-  console.log("made it to verify route", req.payLoad);
+  // console.log("made it to verify route", req.payLoad);
   res.status(200).json(req.payLoad.currentUser);
 });
 

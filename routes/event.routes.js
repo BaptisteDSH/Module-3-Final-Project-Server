@@ -2,7 +2,8 @@ const router = require("express").Router();
 const EventModel = require("../models/Event.model");
 
 //Post an event
-router.post("/", (req, res, next) => {
+router.post("/create", (req, res, next) => {
+  console.log(req.body);
   EventModel.create(req.body)
     .then((createdEvent) => {
       res.status(201).json(createdEvent);
@@ -16,7 +17,7 @@ router.post("/", (req, res, next) => {
 router.get("/", (req, res, next) => {
   EventModel.find({})
     .then((events) => {
-      console.log("Retrieved events -->", events);
+      // console.log("Retrieved events -->", events);
       res.json(events);
     })
     .catch((error) => {
