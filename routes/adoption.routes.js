@@ -4,8 +4,16 @@ const UserModel = require("../models/Adoption.model");
 
 //Create one adoption
 router.post("/", async (req, res, next) => {
-  const { description, pet, pictures, user } = req.body;
-  if (!description || !pet || !pet.name || !Array.isArray(pictures) ||pictures.length === 0 || !user) {
+  const { description, location, pet, pictures, user } = req.body;
+  if (
+    !description ||
+    !location ||
+    !pet ||
+    !pet.name ||
+    !Array.isArray(pictures) ||
+    pictures.length === 0 ||
+    !user
+  ) {
     return res
       .status(400)
       .json({ message: "All required fields must be filled" });
@@ -14,6 +22,7 @@ router.post("/", async (req, res, next) => {
   try {
     AdoptionModel.create({
       description,
+      location,
       pet,
       pictures,
       user,
@@ -71,6 +80,7 @@ router.put("/:adoptionId", async (req, res, next) => {
       req.params.adoptionId,
       req.body,
       { new: true }
+      
     ).populate("user");
     if (updatedAdoption) {
       res
@@ -81,13 +91,12 @@ router.put("/:adoptionId", async (req, res, next) => {
       error.statusCode = 404;
       throw error;
     }
+    console.log(req.body)
   } catch (error) {
     console.log(error);
     next(error);
   }
 });
-
-
 
 //Delete the specified adoption by Id
 router.delete("/:adoptionId", (req, res, next) => {
