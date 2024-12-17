@@ -4,6 +4,9 @@ const jwt = require("jsonwebtoken");
 const UserModel = require("../models/User.model");
 const { isAuthenticated } = require("../middlewares/jwt.middlewares");
 
+
+
+
 //Sign Up route
 router.post("/signup", async (req, res) => {
   const {

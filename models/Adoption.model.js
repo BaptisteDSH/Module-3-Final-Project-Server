@@ -5,7 +5,7 @@ const adoptionSchema = new Schema(
     datePosted: { type: Date, default: Date.now },
     description: { type: String, required: true, trim: true },
     pet: { name: { type: String, required: true } },
-    picture: { type: String, required: true },
+    pictures: { type: [String], required: true },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",

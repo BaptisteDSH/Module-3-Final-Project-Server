@@ -27,6 +27,10 @@ app.use("/api/events", eventRoutes);
 const adoptionRoutes = require("./routes/adoption.routes");
 app.use("/api/adoptions", adoptionRoutes);
 
+//import of cloudinary upload route
+const uploadRoute = require("./routes/cloudinary.routes");
+app.use("/uploads", uploadRoute);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

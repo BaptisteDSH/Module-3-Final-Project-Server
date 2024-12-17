@@ -61,7 +61,7 @@ const eventSchema = new Schema(
       required: [true, "Date is required"],
     },
     description: { type: String },
-    picture: { type: String, default: "https://shorturl.at/I39cR" },
+    pictures: { type: [String], default: ["https://shorturl.at/I39cR"] },
     price: { type: Number, default: 0 },
     organizerId: { type: Schema.Types.ObjectId, ref: "User" },
   },
