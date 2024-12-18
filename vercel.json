@@ -13,7 +13,7 @@
       "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
     },
     {
-      "source": "https://module-3-final-project-server-r5b7ygeb3-baptistedshs-projects.vercel.app/",
+      "source": "https://module-3-final-project-server-r5b7ygeb3-baptistedshs-projects.vercel.app/git",
       "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
     }
   ]
