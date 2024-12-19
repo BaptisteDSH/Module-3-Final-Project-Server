@@ -18,7 +18,7 @@ app.use(express.json());
 
 // 👇 Start handling routes here
 
-router.get("/", (req, res, next) => {
+app.get("/", (req, res, next) => {
   res.json("All good in here");
 });
 
