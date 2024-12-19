@@ -21,7 +21,7 @@ module.exports = (app) => {
   // controls a very specific header to pass headers from the frontend
   app.use(
     cors({
-      origin: [process.env.ORIGIN],
+      origin: ["https://pawty.netlify.app/"],
     })
   );
   //no build and testing
