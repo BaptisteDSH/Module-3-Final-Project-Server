@@ -1,30 +1,19 @@
-const express = require("express");
-const logger = require("morgan");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
+// ℹ️ package responsible to make the connection with mongodb
+// https://www.npmjs.com/package/mongoose
+const mongoose = require("mongoose");
 
-module.exports = (app) => {
-  app.set("trust proxy", 1);
+// ℹ️ Sets the MongoDB URI for our app to have access to it.
+// If no env has been set, we dynamically set it to whatever the folder name was upon the creation of the app
 
-  // CORS middleware
-  app.use(
-    cors({
-      origin: [process.env.ORIGIN],
-    })
-  );
-
-  // // Explicitly set CORS headers for all responses
-  // app.use((req, res, next) => {
-  //   const origin = req.headers.origin;
-  //   if (allowedOrigins.includes(origin)) {
-  //     res.setHeader("Access-Control-Allow-Origin", origin);
-  //     res.setHeader("Access-Control-Allow-Credentials", "true");
-  //   }
-  //   next();
-  // });
-
-  app.use(logger("dev"));
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
-  app.use(cookieParser());
-};
+const MONGO_URI =
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/our-backend";
+console.log("here is our mongo db uri", process.env.MONGODB_URI);
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then((x) => {
+    const dbName = x.connections[0].name;
+    console.log(`Connected to Mongo! Database name: "${dbName}"`);
+  })
+  .catch((err) => {
+    console.error("Error connecting to mongo: ", err);
+  });
