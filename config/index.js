@@ -13,7 +13,7 @@ const cookieParser = require("cookie-parser");
 // unless the request if from the same domain, by default express wont accept POST requests
 const cors = require("cors");
 
-const FRONTEND_URL = process.env.ORIGIN || "http://localhost:5173";
+// const FRONTEND_URL = process.env.ORIGIN || "http://localhost:5173";
 
 // Middleware configuration
 module.exports = (app) => {
@@ -22,10 +22,12 @@ module.exports = (app) => {
   app.set("trust proxy", 1);
 
   // controls a very specific header to pass headers from the frontend
+  const allowedOrigins = ["https://genuine-zabaione-f61f6a.netlify.app"];
+
   app.use(
     cors({
       credentials: true,
-      origin: [FRONTEND_URL],
+      origin: allowedOrigins,
     })
   );
 
