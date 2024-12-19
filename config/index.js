@@ -13,7 +13,7 @@ const cookieParser = require("cookie-parser");
 // unless the request if from the same domain, by default express wont accept POST requests
 const cors = require("cors");
 
-// const FRONTEND_URL = process.env.ORIGIN || "http://localhost:5173";
+const FRONTEND_URL = process.env.ORIGIN || "http://localhost:5173";
 
 // Middleware configuration
 module.exports = (app) => {
@@ -21,21 +21,11 @@ module.exports = (app) => {
   // Services like heroku use something called a proxy and you need to add this to your server
   app.set("trust proxy", 1);
 
-  const allowedOrigins = [
-    "http://localhost:5173", // local
-    "https://genuine-zabaione-f61f6a.netlify.app", // Frontend
-  ];
-
+  // controls a very specific header to pass headers from the frontend
   app.use(
     cors({
       credentials: true,
-      origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-        } else {
-          callback(new Error("Not allowed by CORS"));
-        }
-      },
+      origin: [FRONTEND_URL],
     })
   );
 
