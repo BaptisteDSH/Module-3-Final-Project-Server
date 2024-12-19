@@ -4,13 +4,11 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 module.exports = (app) => {
-  // Allow proxies (necessary for hosting platforms like Vercel)
   app.set("trust proxy", 1);
 
-  // List of allowed origins
   const allowedOrigins = [
-    "http://localhost:5173", // For local development
-    "https://genuine-zabaione-f61f6a.netlify.app", // Production frontend
+    "http://localhost:5173",
+    "https://genuine-zabaione-f61f6a.netlify.app",
   ];
 
   // CORS middleware
@@ -18,21 +16,26 @@ module.exports = (app) => {
     cors({
       credentials: true,
       origin: (origin, callback) => {
-        // Allow requests if origin is in the list or not provided (e.g., Postman)
         if (!origin || allowedOrigins.includes(origin)) {
           callback(null, true);
         } else {
-          console.error(`CORS error: Origin ${origin} is not allowed.`);
           callback(new Error("Not allowed by CORS"));
         }
       },
     })
   );
 
-  // Logging middleware
-  app.use(logger("dev"));
+  // Explicitly set CORS headers for all responses
+  app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+      res.setHeader("Access-Control-Allow-Origin", origin);
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+    }
+    next();
+  });
 
-  // Middleware to parse JSON and URL-encoded data
+  app.use(logger("dev"));
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
