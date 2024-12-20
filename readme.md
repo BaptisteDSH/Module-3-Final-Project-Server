@@ -54,7 +54,7 @@ To set up the project, follow these steps:
    npm start
    ```
 
-   The API will be accessible at [http://localhost:5000](http://localhost:5000).
+   The API will be accessible at (https://module-3-final-project-server.onrender.com/).
 
 ### API Endpoints
 
