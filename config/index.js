@@ -15,13 +15,14 @@ module.exports = (app) => {
   // Configure CORS pour accepter les requêtes de votre frontend
   app.use(
     cors({
-      origin: "https://pawty.netlify.app", // Remplacez par l'URL exacte de votre frontend
+      origin: "https://pawty.netlify.app" || "http://localhost:5173",
       methods: "GET,POST,PUT,DELETE", // Méthodes autorisées
       allowedHeaders: "Content-Type,Authorization", // En-têtes autorisés
     })
   );
 
   // Le reste de votre configuration
+  app.use(logger("dev"));
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
