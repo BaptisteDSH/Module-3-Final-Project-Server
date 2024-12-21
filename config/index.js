@@ -3,31 +3,20 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
+// "https://pawty.netlify.app", // Production frontend
+//   "http://localhost:5173", // Development frontend
 module.exports = (app) => {
-  // Configure CORS to dynamically handle local and production origins
-  const allowedOrigins = [
-    "https://pawty.netlify.app", // Production frontend
-    "http://localhost:5173", // Local frontend
-  ];
-
+  // Configure CORS pour accepter les requêtes de votre frontend
   app.use(
     cors({
-      origin: (origin, callback) => {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-        } else {
-          callback(new Error("Not allowed by CORS"));
-        }
-      },
-      methods: "GET,POST,PUT,DELETE", // Allowed methods
-      allowedHeaders: "Content-Type,Authorization", // Allowed headers
+      origin: "https://pawty.netlify.app", // Remplacez par l'URL exacte de votre frontend
+      methods: "GET,POST,PUT,DELETE", // Méthodes autorisées
+      allowedHeaders: "Content-Type,Authorization", // En-têtes autorisés
     })
   );
 
-  // Middleware configuration
-  app.use(logger("dev")); // Log requests in dev mode
-  app.use(express.json()); // Parse JSON body
-  app.use(express.urlencoded({ extended: false })); // Parse URL-encoded body
-  app.use(cookieParser()); // Parse cookies
+  // Le reste de votre configuration
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
 };

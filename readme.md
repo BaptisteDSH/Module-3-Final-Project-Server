@@ -43,7 +43,7 @@ To set up the project, follow these steps:
    Create a `.env` file in the root of the project and add the following variables:
 
    ```
-   PORT=5000
+   PORT=5005
    JWT_SECRET=<your-secret-key>
    ```
 
@@ -54,7 +54,7 @@ To set up the project, follow these steps:
    npm start
    ```
 
-   The API will be accessible at [http://localhost:5000](http://localhost:5000).
+   The API will be accessible at [http://localhost:5005](http://localhost:5000).
 
 ### API Endpoints
 
