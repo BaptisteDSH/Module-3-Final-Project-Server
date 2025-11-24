@@ -1,6 +1,7 @@
 // ℹ️ Gets access to environment variables/settings
 // https://www.npmjs.com/package/dotenv
 require("dotenv").config();
+const router = require("express").Router();
 
 // ℹ️ Connects to the database
 require("./db");
@@ -18,6 +19,10 @@ require("./config")(app);
 app.use(express.json());
 
 // 👇 Start handling routes here
+
+router.get("/", (req, res, next) => {
+  console.log("all good in here");
+});
 
 const userRoutes = require("./routes/user.routes");
 app.use("/api/user", userRoutes);
