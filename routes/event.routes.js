@@ -26,8 +26,15 @@ router.get("/", (req, res, next) => {
     });
 });
 
-//Get specific event by ID
+//Get All Events by UserId
+router.get("/organizer/:organizerId", (req, res, next) => {
+  EventModel.find({ organizerId: req.params.organizerId })
+    .populate("organizerId")
+    .then((events) => res.status(200).json(events))
+    .catch((error) => next(error));
+});
 
+//Get specific event by ID
 router.get("/:eventId", (req, res, next) => {
   EventModel.findById(req.params.eventId)
     .populate("organizerId")
@@ -38,14 +45,6 @@ router.get("/:eventId", (req, res, next) => {
     .catch((err) => {
       next(err);
     });
-});
-
-//Get All Events by UserId
-router.get("/organizer/:organizerId", (req, res, next) => {
-  EventModel.find({ organizerId: req.params.userId })
-    .populate("organizerId")
-    .then((events) => res.status(200).json(events))
-    .catch((error) => next(error));
 });
 
 //Update an event by ID

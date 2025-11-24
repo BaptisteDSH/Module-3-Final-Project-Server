@@ -13,7 +13,7 @@ console.log(
 // Use environment variables for the MongoDB URIs
 const mongoUriOnline =
   process.env.MONGODB_URI ||
-  "mongodb+srv://anonymousbapt:uzhmK5iR2Sn7TMdx@module-3-back-end.xbckh.mongodb.net/";
+  "mongodb+srv://anonymousbapt:BHQvso7h6M6Tk5VW@module-3-back-end.xbckh.mongodb.net/";
 const mongoUriLocal =
   process.env.MONGODB_URI_LOCAL || "mongodb://localhost:27017/";
 
