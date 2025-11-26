@@ -3,7 +3,36 @@ require("dotenv").config();
 require("../db");
 
 const express = require("express");
+const cors = require("cors");
 const app = express();
+
+// CORS configuration - must be before routes
+const allowedOrigins = [
+  "https://pawty.netlify.app",
+  "https://thunderous-bavarois-8fd281.netlify.app",
+  "http://localhost:5173",
+  "http://localhost:3000",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (mobile apps, Postman, etc.)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        console.log("CORS blocked:", origin);
+        return callback(
+          new Error("Not allowed by CORS - origin: " + origin),
+          false
+        );
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 // Configuration middleware
 require("../config")(app);
