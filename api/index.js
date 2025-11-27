@@ -1,10 +1,18 @@
 // api/index.js
+console.log("[API] Starting API server...");
+console.log("[API] NODE_ENV:", process.env.NODE_ENV);
+
 require("dotenv").config();
+console.log("[API] Environment variables loaded");
+
 require("../db");
+console.log("[API] Database connection initiated");
 
 const express = require("express");
 const cors = require("cors");
 const app = express();
+
+console.log("[API] Express app created");
 
 // CORS configuration - must be before routes
 const allowedOrigins = [

@@ -13,13 +13,15 @@ console.log(
 // Use environment variables for the MongoDB URIs
 const mongoUriOnline =
   process.env.MONGODB_URI ||
-  "mongodb+srv://anonymousbapt:BHQvso7h6M6Tk5VW@module-3-back-end.xbckh.mongodb.net/";
+  "mongodb+srv://anonymousbapt:BHQvso7h6M6Tk5VW@module-3-back-end.xbckh.mongodb.net/pawty-db";
 const mongoUriLocal =
-  process.env.MONGODB_URI_LOCAL || "mongodb://localhost:27017/";
+  process.env.MONGODB_URI_LOCAL || "mongodb://localhost:27017/pawty-db";
 
 // Select the URI based on the environment
 const uri =
   process.env.NODE_ENV === "production" ? mongoUriOnline : mongoUriLocal;
+
+console.log("Selected MongoDB URI:", uri.replace(/:\/\/[^:]+:[^@]+@/, "://***:***@"));
 
 // Attempt to connect to MongoDB
 mongoose

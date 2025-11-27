@@ -15,13 +15,14 @@ router.post("/create", (req, res, next) => {
 
 //Get all events
 router.get("/", (req, res, next) => {
+  console.log("[EVENTS] GET / - Fetching all events");
   EventModel.find({})
     .then((events) => {
-      // console.log("Retrieved events -->", events);
+      console.log(`[EVENTS] Retrieved ${events.length} events`);
       res.json(events);
     })
     .catch((error) => {
-      console.error("Error while reretieving events -->", error);
+      console.error("[EVENTS] Error while retrieving events -->", error);
       next(error);
     });
 });
