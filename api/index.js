@@ -1,8 +1,7 @@
 // api/index.js
+require("dotenv").config();
 console.log("[API] Starting API server...");
 console.log("[API] NODE_ENV:", process.env.NODE_ENV);
-
-require("dotenv").config();
 console.log("[API] Environment variables loaded");
 
 require("../db");
